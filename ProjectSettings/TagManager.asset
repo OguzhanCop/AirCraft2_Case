@@ -3,7 +3,11 @@
 --- !u!78 &1
 TagManager:
   serializedVersion: 2
-  tags: []
+  tags:
+  - angle2
+  - angle
+  - plane
+  - environment
   layers:
   - Default
   - TransparentFX

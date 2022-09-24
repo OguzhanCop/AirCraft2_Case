@@ -7,6 +7,7 @@ public class PlaneMovement : MonoBehaviour
     private Rigidbody rb;
     [SerializeField] float speedMultiplierFactor;
     private float speed;
+    public GameData gameData;
     private void OnEnable()
     {
         EventManager.planeHorizontalControll += PlaneHorizontalControll;
@@ -29,10 +30,7 @@ public class PlaneMovement : MonoBehaviour
         rb = transform.GetComponent<Rigidbody>();
     }
 
-    private void Update()
-    {
-        //gameObject.transform.GetComponent<Rigidbody>().velocity=transform.forward*20;
-    }
+  
     void PlaneHorizontalControll(float joystickHorizontalValue)
     {
 
@@ -60,8 +58,14 @@ public class PlaneMovement : MonoBehaviour
     {
         if (rb.velocity.magnitude <= accerelatorValue * 50)
         {
+
             speed += accerelatorValue * speedMultiplierFactor * Time.deltaTime;
+            gameData.speed = (int)speed * 5;
             rb.velocity = transform.forward * speed;
+            if (gameData.speed > 70)
+            {
+                gameData.planeFlying = true;
+            }
             
         }
         else
@@ -69,21 +73,15 @@ public class PlaneMovement : MonoBehaviour
             if (rb.velocity.magnitude >= 1)
             {
                 speed -= (1 - accerelatorValue) * speedMultiplierFactor / 2 * Time.deltaTime;
+                gameData.speed = (int)speed * 4;
                 rb.velocity = transform.forward * speed;
             }
             else
             {
                 rb.velocity = transform.forward * 0;
             }
-            
-
-
-
-
         }
-
-
-
     }
+  
 
 }
