@@ -12,5 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 987c0c803a7d3024a9804dcc36f1dde4, type: 3}
   m_Name: GameData
   m_EditorClassIdentifier: 
-  targetCounter: 1
+  checkPointCounter: 6
   planeAngleCheck: 0
+  score: -90
+  speed: 200
+  planeFlying: 1

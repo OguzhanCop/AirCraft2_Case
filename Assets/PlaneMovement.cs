@@ -62,11 +62,12 @@ public class PlaneMovement : MonoBehaviour
             speed += accerelatorValue * speedMultiplierFactor * Time.deltaTime;
             gameData.speed = (int)speed * 5;
             rb.velocity = transform.forward * speed;
-            if (gameData.speed > 70)
+            if (gameData.speed > 130 && !gameData.planeFlying)
             {
                 gameData.planeFlying = true;
+                transform.Rotate(-5, 0, 0, Space.Self);
             }
-            
+               
         }
         else
         {

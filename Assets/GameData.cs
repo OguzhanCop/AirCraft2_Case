@@ -6,7 +6,7 @@ using UnityEngine;
 [CreateAssetMenu(fileName ="GameData", menuName ="GameData")]
 public class GameData : ScriptableObject
 {
-    public int targetCounter;
+    public int checkPointCounter;
     public bool planeAngleCheck;
     public int score;
     public int speed;

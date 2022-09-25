@@ -13,11 +13,15 @@ public class UIManeger : MonoBehaviour
     public TextMeshProUGUI scoreText;
     public TextMeshProUGUI speedoMeterText;
     public GameObject buttonPanel;
+    public GameObject controllPanel;
+    public GameObject indicatorsPanel;
+    public GameObject winPanel;
+    public GameObject losePanel;
 
 
     private void Start()
     {
-        gameData.targetCounter = 0;
+        gameData.checkPointCounter = 0;
         gameData.planeAngleCheck = false;
         gameData.planeFlying = false;
        gameData.speed=0;
@@ -25,11 +29,12 @@ public class UIManeger : MonoBehaviour
     private void OnEnable()
     {
         EventManager.scoreChange += ScoreChange;
-
+       EventManager.losePanel += LosePanel; 
     }
     private void OnDisable()
     {
         EventManager.scoreChange -= ScoreChange;
+        EventManager.losePanel -= LosePanel;
     }
     void Update()
     {
@@ -41,7 +46,7 @@ public class UIManeger : MonoBehaviour
 
     void JoystickControll()
     {
-        if (joystick.Horizontal != 0)
+        if (joystick.Horizontal != 0 && gameData.planeFlying)
         {
             EventManager.planeHorizontalControll.Invoke(joystick.Horizontal);
             EventManager.planeRotationIndicator.Invoke(joystick.Horizontal);
@@ -52,7 +57,7 @@ public class UIManeger : MonoBehaviour
             EventManager.planeHorizontalBaseRotation.Invoke();
             EventManager.planeRotationIndicatorBaseAngle.Invoke();
         }
-        if (joystick.Vertical != 0)
+        if (joystick.Vertical != 0 && gameData.planeFlying)
         {
             EventManager.planeVerticalControll.Invoke(joystick.Vertical);
 
@@ -97,6 +102,20 @@ public class UIManeger : MonoBehaviour
     public void RestartButton()
     {
         SceneManager.LoadScene(0);
+        Time.timeScale = 1;
+    }
+    void LosePanel()
+    {
+        indicatorsPanel.gameObject.SetActive(false);
+        controllPanel.gameObject.SetActive(false);
+        StartCoroutine(LoseGame());
+
+    }
+    IEnumerator LoseGame()
+    {
+        yield return new WaitForSecondsRealtime(2f);
+        losePanel.gameObject.SetActive(true);
+        Time.timeScale = 0;
 
     }
 }

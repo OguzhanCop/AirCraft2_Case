@@ -11,11 +11,14 @@ public class PlaneExplosion : MonoBehaviour
         if (other.gameObject.transform.tag == "environment" && gameData.planeFlying)
         {
             
-            //gameObject.transform.parent.gameObject.SetActive(false);
+           
             explosionPartickle.Play();
+            EventManager.losePanel.Invoke();
             Destroy(gameObject.transform.parent.gameObject);
-            Debug.Log("oldu");
+            
+
         }
-        Debug.Log("oldu");
+        
     }
+  
 }

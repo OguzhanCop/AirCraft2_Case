@@ -14,4 +14,7 @@ public static class EventManager
     public static Action<float> planeRotationIndicator;
     public static Action planeRotationIndicatorBaseAngle;
     public static Action scoreChange;
+    public static Action winPanel;
+    public static Action losePanel;
+
 }
