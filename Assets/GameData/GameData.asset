@@ -15,5 +15,5 @@ MonoBehaviour:
   checkPointCounter: 0
   planeAngleCheck: 0
   score: 10
-  speed: 250
-  planeFlying: 1
+  speed: 0
+  planeFlying: 0
