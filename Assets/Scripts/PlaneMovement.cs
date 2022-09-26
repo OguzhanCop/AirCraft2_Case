@@ -65,6 +65,7 @@ public class PlaneMovement : MonoBehaviour
     {
         var jetEffect1Setting = jetEffect1.main;
         var jetEffect2Setting = jetEffect2.main;
+        
         if (rb.velocity.magnitude <= accerelatorValue * 50 )
         {
 
@@ -88,15 +89,15 @@ public class PlaneMovement : MonoBehaviour
             if (rb.velocity.magnitude >= 1 && !planeFalling)
             {
                 speed -= (1 - accerelatorValue) * speedMultiplierFactor / 2 * Time.deltaTime;
-                gameData.speed = (int)speed * 4;
+                gameData.speed = (int)speed * 5;
                 jetEffect1Setting.startLifetime = accerelatorValue * 2;
                 jetEffect2Setting.startLifetime = accerelatorValue * 2;
                 rb.velocity = transform.forward * speed;
-                if (gameData.speed < 40 && planeTakeOff)
+                if (gameData.speed < 80 && planeTakeOff)
                 {
                     planeFalling = true;
                     gameData.planeFlying = false;
-                    transform.DORotateQuaternion(Quaternion.Euler(70, transform.rotation.eulerAngles.y, transform.rotation.eulerAngles.z), 8f);
+                    transform.DORotateQuaternion(Quaternion.Euler(70, transform.rotation.eulerAngles.y, transform.rotation.eulerAngles.z), 4f);
                     
                 }
                     
